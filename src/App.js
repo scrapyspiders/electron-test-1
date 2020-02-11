@@ -1,30 +1,43 @@
-import React from 'react';
-import { Link } from "react-router-dom"
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+// import CustomizedSlider from './components/CustomizedSlider.js'
+// import MyApp from './components/DownloadTest';
+// import SliderLight from './components/SliderLight';
+import CustomizedSliderCS from './components/CustomizedSliderCS.js'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <p>React Electron Boilerplate</p>
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <Link className="App-link" to="/about">Link to the About Page</Link>
-      </header>
-      
-    </div>
-  );
+
+
+
+class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      data:
+        []
+    }
+  }
+
+  render() {
+    const state = this.state;
+
+    return (
+     
+        <div className="background">
+          <div className="App-header">
+            <h2>Illumination Control</h2>
+          </div>
+
+            
+            <div className="bars">
+            {/* <MyApp /> */}
+            {/* <SliderLight /> */}
+            {/* <CustomizedSlider /> */}
+            <CustomizedSliderCS />
+            </div>
+        </div>
+    );
+  }
 }
 
 export default App;

@@ -1,32 +1,27 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-}
+/* .root {
+  width: 100%;
+  overflow-x: auto;
+} */
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  min-height: 10vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  padding-bottom: 25px;
+  }
+
+.background {
+  height: 100%;
 }
 
-.App-link {
-  color: #09d3ac;
-}
+.bars{
+  /* background-color: black; */
+  padding-top: 50px;
+  padding-left: 10vw;
 
-.about {
-  margin-top: 10%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
 }
-
