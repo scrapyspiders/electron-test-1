@@ -3,14 +3,19 @@ const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 const path = require("path");
 const isDev = require("electron-is-dev");
+// const  { shell }  = require('electron')
+
+
+
 let mainWindow;
 function createWindow() {
+    
     mainWindow = new BrowserWindow({ 
         width: 1200, 
         height: 800,
         icon: ""
     });
-     
+    
 
     mainWindow.loadURL(
         isDev
@@ -20,6 +25,10 @@ function createWindow() {
     mainWindow.on("closed", () => (mainWindow = null));
 }
 
+function showhello() {
+    console.log("this is hello ! ")
+}
+ 
 app.on("ready", createWindow);
 app.on("window-all-closed", () => {
     if (process.platform !== "darwin") {
