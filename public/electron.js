@@ -1,9 +1,9 @@
 const electron = require("electron");
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
-const path = require("path");
 const isDev = require("electron-is-dev");
 // const  { shell }  = require('electron')
+// const { sh33ell } = require('electron')
 
 
 
@@ -14,14 +14,18 @@ function createWindow() {
         width: 1200, 
         height: 800,
         icon: ""
-    });
+    });    
     
+
 
     mainWindow.loadURL(
         isDev
         ? "http://localhost:3000"
         : `file://${path.join(__dirname, "../build/index.html")}`
     );
+
+    electron.shell.beep()
+
     mainWindow.on("closed", () => (mainWindow = null));
 }
 

@@ -6,12 +6,13 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
 // import shell from '../../src/electron.js'
-// import { shell } from 'electron'
-
 
 
 export default class CustomizedSliderCS extends React.Component {
 
+  // makeBeep = () => {
+  //     shell.beep()
+  // }
 
 
   render() {
@@ -20,9 +21,10 @@ export default class CustomizedSliderCS extends React.Component {
     return (
       <div className="Sliders">
 
-      <Button onClick={this.downloadTxtFile} variant="contained" color="primary" size="small">
-          Open file
+        <Button onClick={this.makeBeep} variant="contained" color="primary" size="small">
+        Save
       </Button>
+
 
       </div>
     );
