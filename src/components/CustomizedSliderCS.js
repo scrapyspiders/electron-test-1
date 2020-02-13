@@ -5,13 +5,10 @@ import Slider from '@material-ui/core/Slider';
 import Tooltip from '@material-ui/core/Tooltip';
 import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
-// import shell from '../../src/electron.js'
-// import { shell } from 'electron'
 const { shell } = window.require('electron')
 const fs = window.require('fs');
 // const remote = require('remote');
 // const dialog = remote.require('dialog');
-
 // const { path } = window.require('path')
 
 
@@ -122,26 +119,13 @@ export default class CustomizedSliderCS extends React.Component {
   downloadTxtFile = () => {
     const element = document.createElement("a");
     const file = new Blob([
-    
-      "COM=COM8",
-      "\n",
-      "GRP1:3",
-      "\n",
-      "GRP2:1,2",
-      "\n",
-      "GRP3:4,5,6",
-      "\n",
-      "GRP1=",this.state.slider1, 
-      "\n",
-      "GRP2=",this.state.slider2,
-      "\n",
-      "GRP3=",this.state.slider3 
+      this.state.slider1, 
+      this.state.slider2,
+      this.state.slider3 
     ], { type: 'text/plain' });
     element.href = URL.createObjectURL(file); 
     console.log(file)
     element.download = "myFile.txt";
-    // dialog.show
-    // document.body.appendChild(element); // Required for this to work in FireFox
     element.click();
   }
 
@@ -168,17 +152,8 @@ export default class CustomizedSliderCS extends React.Component {
 
 
   makeBeep = () => {
-    // fs.existsSync('c:\\Users\\danie\\Desktop\\example.txt') ? console.log("this file is sababa") : console.log("this file is not here");
       shell.beep();
       // shell.openItem('c:\\Users\\danie\\Desktop\\example.txt');
-      // shell.openItem('c:\\Users\\danie\\Desktop\\example.txt');
-      // fs.writeFile('myjson.txt', "hwllo", 'utf8', function(err) {
-      //   if(err) {
-      //     return console.log(err);
-      //   }
-      //  console.log('File was saved');
-      // });
-      // dialog.showOpenDialog()
   }
 
   render() {
@@ -187,7 +162,7 @@ export default class CustomizedSliderCS extends React.Component {
       <div className="Sliders">
 
 <div className="slider1">
-          <p>LED 1</p>
+          <p>first</p>
           <IOSSlider style={{ width: "50%", marginTop: 15 }} aria-label="ios slider" onChange={this.sliderValue1} defaultValue={this.state.slider2} marks={[{ value: 30 }, { value: 50 }, { value: 70 }]} valueLabelDisplay="on" />
           <Input 
             title="1"
@@ -210,7 +185,7 @@ export default class CustomizedSliderCS extends React.Component {
         <br></br>
 
         <div className="slider2">
-        <p>LED 2</p>
+        <p>second</p>
           <IOSSlider style={{ width: "50%", marginTop: 15}} aria-label="ios slider" onChange={this.sliderValue2} defaultValue={this.state.slider2} marks={[{ value: 30 }, { value: 50 }, { value: 70 }]} valueLabelDisplay="on" />
           <Input 
             title="2"
@@ -231,7 +206,7 @@ export default class CustomizedSliderCS extends React.Component {
 
         <br></br>
         <br></br>
-        <p>LED 3</p>
+        <p>third</p>
         <IOSSlider id="3" style={{ width: "50%", marginTop: 15}} aria-label="ios slider" onChange={this.sliderValue3} defaultValue={this.state.slider3} marks={[{ value: 30 }, { value: 50 }, { value: 70 }]} valueLabelDisplay="on" />
 
         <Input
@@ -256,7 +231,7 @@ export default class CustomizedSliderCS extends React.Component {
 
 
         <Button id="auth-button" onClick={this.downloadTxtFile} variant="contained" color="primary" size="small">
-          Write a file and open exe 
+          Write a txt file and save it on desktop
       </Button>
       </div>
     );

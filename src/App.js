@@ -21,7 +21,7 @@ class App extends Component {
      
         <div className="background">
           <div className="App-header">
-            <h2>Illumination Control</h2>
+            <h2>Sliders</h2>
           </div>
             <div className="bars">
             <CustomizedSliderCS />
