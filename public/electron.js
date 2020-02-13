@@ -3,6 +3,7 @@ const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 const isDev = require("electron-is-dev");
 const path = require("path");
+const ipcMain = electron.ipcMain
 
 
 let mainWindow;
