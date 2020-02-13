@@ -31,16 +31,12 @@ function createWindow() {
     //         ? "http://localhost:3000"
     //         : `file://${path.join(__dirname, "../build/index.html")}`
     // );
-    electron.shell.beep()
+    
     // electron.shell.openItem('c://desktop/fruitspec')
     // electron.shell.openExternal('https://github.com')
-
     mainWindow.on("closed", () => (mainWindow = null));
 }
 
-function showhello() {
-    console.log("this is hello ! ")
-}
 app.on('certificate-error', function(event, webContents, url, error, 
     certificate, callback) {
         event.preventDefault();
