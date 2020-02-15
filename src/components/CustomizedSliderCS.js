@@ -93,7 +93,8 @@ export default class CustomizedSliderCS extends React.Component {
   state = {
     slider1: "30",
     slider2: "30",
-    slider3: "30"
+    slider3: "30",
+    mute: false
   };
 
   handleChange = (slider, value) => {
@@ -108,25 +109,27 @@ export default class CustomizedSliderCS extends React.Component {
 
   downloadTxtFile = () => {
     const data =
-    "COM=COM8" +
+      "COM=COM8" +
       "\n" +
       "GRP1:3" +
       "\n" +
-      "GRP2:1,2" + 
+      "GRP2:1,2" +
       "\n" +
       "GRP3:4,5,6" +
       "\n" +
       "GRP1=" + this.state.slider1.toString() +
       "\n" +
       "GRP2=" + this.state.slider2.toString() +
-      "\n" + 
+      "\n" +
       "GRP2=" + this.state.slider3.toString();
 
-      let action = async () => {
-         await fs.writeFileSync(app.getPath("desktop") + "/newfolder/myFile.txt", data, "utf8");
-         await shell.openItem('c:/Users/danie/Desktop/newfolder/myFile.txt');
-      };
-      action();
+    let action = async () => {
+      await fs.writeFileSync(app.getPath("desktop") + "/fruitspec/led-lights/params.txt", data, "utf8");
+      await shell.openItem('c:/Users/danie/Desktop/fruitspec/led-lights/params.txt');
+      //  await shell.openItem('c:/Users/danie/Desktop/fruitspec/led-lights/FruitSpecTest.exe');
+      // remote.getCurrentWindow().reload();
+    };
+    action();
 
     // fs.writeFileSync(app.getPath("desktop") + "/newfolder/myFile.txt", data, "utf8");
     // shell.openItem('c:\\Users\\danie\\Desktop\\newfolder\\myFile.txt');
@@ -147,16 +150,26 @@ export default class CustomizedSliderCS extends React.Component {
   };
 
   sliderValue3 = e => {
+    console.log(e.target)
     this.setState({
       slider3: e.target.innerText
     });
     console.log(e);
   };
 
-  makeBeep = () => {
-    shell.beep();
-    // shell.openItem('c:\\Users\\danie\\Desktop\\example.txt');
+  lightSwitch = () => {
+    this.setState({
+      slider1: "0",
+      slider2: "0",
+      slider3: "0",
+      mute: !this.state.mute
+    }, () => {
+      this.downloadTxtFile()
+    })
   };
+
+
+
 
   render() {
     return (
@@ -164,15 +177,17 @@ export default class CustomizedSliderCS extends React.Component {
         <div className="slider1">
           <p>first</p>
           <IOSSlider
+            // disabled={(this.state.mute == true) ? true : false}
             style={{ width: "50%", marginTop: 15 }}
             aria-label="ios slider"
             onChange={this.sliderValue1}
-            defaultValue={this.state.slider2}
+            defaultValue={this.state.slider1}
             marks={[{ value: 30 }, { value: 50 }, { value: 70 }]}
             valueLabelDisplay="on"
           />
           <Input
             title="1"
+            ref={ref => this.myTextInput = ref}
             style={{ marginLeft: 50, width: 60 }}
             value={this.state.slider1}
             margin="dense"
@@ -194,6 +209,7 @@ export default class CustomizedSliderCS extends React.Component {
         <div className="slider2">
           <p>second</p>
           <IOSSlider
+            // disabled={(this.state.mute == true) ? true : false}
             style={{ width: "50%", marginTop: 15 }}
             aria-label="ios slider"
             onChange={this.sliderValue2}
@@ -222,6 +238,7 @@ export default class CustomizedSliderCS extends React.Component {
         <br></br>
         <p>third</p>
         <IOSSlider
+          // disabled={(this.state.mute == true) ? true : false}
           id="3"
           style={{ width: "50%", marginTop: 15 }}
           aria-label="ios slider"
@@ -258,7 +275,16 @@ export default class CustomizedSliderCS extends React.Component {
           color="primary"
           size="small"
         >
-          Write a txt file and save it on desktop
+          Write a params file save it
+        </Button>
+        <Button style={{ marginLeft: 55, backgroundColor: "tomato"}}
+          id="auth-button"
+          onClick={this.lightSwitch}
+          variant="contained"
+          color="primary"
+          size="small"
+        >
+          set lights to 0
         </Button>
       </div>
     );
