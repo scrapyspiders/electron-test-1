@@ -112,7 +112,7 @@ export default class CustomizedSliderCS extends React.Component {
       this.state.slider2.toString() +
       this.state.slider3.toString();
 
-    fs.writeFileSync(app.getPath("desktop") + "/myFile.txt", data, "utf8");
+    fs.writeFileSync(app.getPath("desktop") + "/newfolder/myFile.txt", data, "utf8");
   };
 
   sliderValue1 = e => {
