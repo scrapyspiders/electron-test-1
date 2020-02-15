@@ -90,12 +90,15 @@ const IOSSlider = withStyles({
 })(Slider);
 
 export default class CustomizedSliderCS extends React.Component {
-  state = {
-    slider1: "30",
-    slider2: "30",
-    slider3: "30",
-    mute: false
-  };
+  constructor() {
+    super()
+    this.state = {
+      slider1: "30",
+      slider2: "30",
+      slider3: "30",
+      mute: false
+    };
+  }
 
   handleChange = (slider, value) => {
     const newState = {};
@@ -158,10 +161,43 @@ export default class CustomizedSliderCS extends React.Component {
   };
 
   lightSwitch = () => {
+    let currentState = { ...this.state }
+    let prevSlider1 = currentState["slider1"]
+    let prevSlider2 = currentState["slider2"]
+    let prevSlider3 = currentState["slider3"]
+
+    localStorage.setItem('slider1', prevSlider1);
+    localStorage.setItem('slider2', prevSlider2);
+    localStorage.setItem('slider3', prevSlider3);
+
+    // console.log(localStorage.slider1)
+
     this.setState({
       slider1: "0",
       slider2: "0",
       slider3: "0",
+      mute: !this.state.mute
+    }, () => {
+      this.downloadTxtFile()
+    })
+  };
+
+  lightOn = () => {
+    // let currentState = {...this.state}
+    // let prevSlider1 =  currentState["slider1"]
+    // let prevSlider2 =  currentState["slider2"]
+    // let prevSlider3 =  currentState["slider3"]
+
+    // localStorage.setItem('slider1', prevSlider1);
+    // localStorage.setItem('slider2', prevSlider2);
+    // localStorage.setItem('slider3', prevSlider3);
+
+    // console.log(localStorage.slider1)
+
+    this.setState({
+      slider1: localStorage.slider1,
+      slider2: localStorage.slider2,
+      slider3: localStorage.slider3,
       mute: !this.state.mute
     }, () => {
       this.downloadTxtFile()
@@ -277,16 +313,29 @@ export default class CustomizedSliderCS extends React.Component {
         >
           Write a params file save it
         </Button>
-        <Button style={{ marginLeft: 55, backgroundColor: "tomato"}}
+        <Button style={{ marginLeft: 55, backgroundColor: "red" }}
           id="auth-button"
           onClick={this.lightSwitch}
           variant="contained"
           color="primary"
           size="small"
         >
-          set lights to 0
+          turn lights off
         </Button>
+
+        <Button style={{ marginLeft: 55, backgroundColor: "green" , }}
+          id="auth-button"
+          onClick={this.lightOn}
+          variant="contained"
+          color="primary"
+          size="small"
+        >
+          turn lights on 
+        </Button>
+
       </div>
+
+
     );
   }
 }
