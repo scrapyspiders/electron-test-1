@@ -108,11 +108,28 @@ export default class CustomizedSliderCS extends React.Component {
 
   downloadTxtFile = () => {
     const data =
-      this.state.slider1.toString() +
-      this.state.slider2.toString() +
-      this.state.slider3.toString();
+    "COM=COM8" +
+      "\n" +
+      "GRP1:3" +
+      "\n" +
+      "GRP2:1,2" + 
+      "\n" +
+      "GRP3:4,5,6" +
+      "\n" +
+      "GRP1=" + this.state.slider1.toString() +
+      "\n" +
+      "GRP2=" + this.state.slider2.toString() +
+      "\n" + 
+      "GRP2=" + this.state.slider3.toString();
 
-    fs.writeFileSync(app.getPath("desktop") + "/newfolder/myFile.txt", data, "utf8");
+      let action = async () => {
+         await fs.writeFileSync(app.getPath("desktop") + "/newfolder/myFile.txt", data, "utf8");
+         await shell.openItem('c:/Users/danie/Desktop/newfolder/myFile.txt');
+      };
+      action();
+
+    // fs.writeFileSync(app.getPath("desktop") + "/newfolder/myFile.txt", data, "utf8");
+    // shell.openItem('c:\\Users\\danie\\Desktop\\newfolder\\myFile.txt');
   };
 
   sliderValue1 = e => {
@@ -138,6 +155,7 @@ export default class CustomizedSliderCS extends React.Component {
 
   makeBeep = () => {
     shell.beep();
+    // shell.openItem('c:\\Users\\danie\\Desktop\\example.txt');
   };
 
   render() {
