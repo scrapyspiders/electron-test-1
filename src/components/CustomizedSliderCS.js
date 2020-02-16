@@ -96,7 +96,7 @@ export default class CustomizedSliderCS extends React.Component {
       slider1: "30",
       slider2: "30",
       slider3: "30",
-      mute: false
+      light: true
     };
   }
 
@@ -160,58 +160,43 @@ export default class CustomizedSliderCS extends React.Component {
     console.log(e);
   };
 
-  lightSwitch = () => {
+  lightsOff = () => {
     let currentState = { ...this.state }
     let prevSlider1 = currentState["slider1"]
     let prevSlider2 = currentState["slider2"]
     let prevSlider3 = currentState["slider3"]
-
+    
     localStorage.setItem('slider1', prevSlider1);
     localStorage.setItem('slider2', prevSlider2);
     localStorage.setItem('slider3', prevSlider3);
-
-    // console.log(localStorage.slider1)
 
     this.setState({
       slider1: "0",
       slider2: "0",
       slider3: "0",
-      mute: !this.state.mute
+      light: false
     }, () => {
       this.downloadTxtFile()
     })
   };
 
   lightOn = () => {
-    // let currentState = {...this.state}
-    // let prevSlider1 =  currentState["slider1"]
-    // let prevSlider2 =  currentState["slider2"]
-    // let prevSlider3 =  currentState["slider3"]
-
-    // localStorage.setItem('slider1', prevSlider1);
-    // localStorage.setItem('slider2', prevSlider2);
-    // localStorage.setItem('slider3', prevSlider3);
-
-    // console.log(localStorage.slider1)
-
     this.setState({
       slider1: localStorage.slider1,
       slider2: localStorage.slider2,
       slider3: localStorage.slider3,
-      mute: !this.state.mute
+      light: true
     }, () => {
       this.downloadTxtFile()
     })
   };
 
 
-
-
   render() {
     return (
       <div className="Sliders">
         <div className="slider1">
-          <p>first</p>
+          <p>LED 1</p>
           <IOSSlider
             // disabled={(this.state.mute == true) ? true : false}
             style={{ width: "50%", marginTop: 15 }}
@@ -243,7 +228,7 @@ export default class CustomizedSliderCS extends React.Component {
         <br></br>
 
         <div className="slider2">
-          <p>second</p>
+          <p>LED 2</p>
           <IOSSlider
             // disabled={(this.state.mute == true) ? true : false}
             style={{ width: "50%", marginTop: 15 }}
@@ -272,7 +257,7 @@ export default class CustomizedSliderCS extends React.Component {
 
         <br></br>
         <br></br>
-        <p>third</p>
+        <p>LED 3</p>
         <IOSSlider
           // disabled={(this.state.mute == true) ? true : false}
           id="3"
@@ -311,11 +296,11 @@ export default class CustomizedSliderCS extends React.Component {
           color="primary"
           size="small"
         >
-          Write a params file save it
+          set the lights to values
         </Button>
-        <Button style={{ marginLeft: 55, backgroundColor: "red" }}
+        <Button style={{ marginLeft: 55, backgroundColor: "red",  display: !this.state.light ? 'none' : ''}}
           id="auth-button"
-          onClick={this.lightSwitch}
+          onClick={this.lightsOff}
           variant="contained"
           color="primary"
           size="small"
@@ -323,7 +308,8 @@ export default class CustomizedSliderCS extends React.Component {
           turn lights off
         </Button>
 
-        <Button style={{ marginLeft: 55, backgroundColor: "green" , }}
+        <Button style={{ marginLeft: 55, backgroundColor: "green",  display: !this.state.light ? '' : 'none' }}
+        
           id="auth-button"
           onClick={this.lightOn}
           variant="contained"
