@@ -127,8 +127,8 @@ export default class CustomizedSliderCS extends React.Component {
       "GRP2=" + this.state.slider3.toString();
 
     let action = async () => {
-      await fs.writeFileSync(app.getPath("desktop") + "/fruitspec/led-lights/params.txt", data, "utf8");
-      await shell.openItem('c:/Users/danie/Desktop/fruitspec/led-lights/params.txt');
+      await fs.writeFileSync(app.getPath("desktop") + "/newfolder/led-lights/params.txt", data, "utf8");
+      await shell.openItem('c:/Users/danie/Desktop/newfolder/led-lights/params.txt');
       //  await shell.openItem('c:/Users/danie/Desktop/fruitspec/led-lights/FruitSpecTest.exe');
       // remote.getCurrentWindow().reload();
     };
