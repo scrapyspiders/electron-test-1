@@ -1,12 +1,22 @@
 {
-  "name": "light-control",
-  "version": "0.1.0",
+  "name": "led-control-app-fruitspec",
+  "version": "1.0.0",
   "description": "Simple boilerplate for developing an Electron app with React",
   "author": "willjw3",
+  "license": "MIT",
   "build": {
-    "appId": "react.electron",
+    "appId": "com.ipenywis.app",
+    "productName": "LED Controller FuirtSpec",
+    "target": "NSIS",
+    "directory": {
+      "output": "build"
+    },
+    "nsis": {
+      "allowToChangeInstallationDirectory": true,
+      "oneClick": false
+    },
     "win": {
-      "icon": "build/"
+      "icon": "build/public/favicon.ico"
     }
   },
   "main": "public/electron.js",
@@ -48,7 +58,8 @@
   "devDependencies": {
     "concurrently": "^5.0.0",
     "electron": "^7.1.0",
-    "electron-builder": "^22.1.0",
+    "electron-builder": "^22.3.2",
+    "electron-devtools-installer": "^2.2.4",
     "wait-on": "^3.3.0"
   }
 }

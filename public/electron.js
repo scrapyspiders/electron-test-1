@@ -33,9 +33,15 @@ function createWindow() {
     //         : `file://${path.join(__dirname, "../build/index.html")}`
     // );
     
-    // electron.shell.openItem('c://desktop/fruitspec')
-    // electron.shell.openExternal('https://github.com')
     mainWindow.on("closed", () => (mainWindow = null));
+
+    const { default: installExtension, REACT_DEVELOPER_TOOLS } = require('electron-devtools-installer');
+
+    installExtension(REACT_DEVELOPER_TOOLS).then((name) => {
+        console.log(`Added extention: ${name}`);
+    }).catch((err) => {
+        console.log("An error ocurred", err);
+    })
 }
 
 app.on('certificate-error', function(event, webContents, url, error, 
